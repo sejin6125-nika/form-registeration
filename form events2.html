@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form events</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #1de979, #2978a7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .error { color: red; font-size: 0.9em; }
+    .form-container {
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        width: 100%;
+        max-width: 400px;
+    }
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+     label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+    input, textarea, select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    input:focus, textarea:focus, select:focus {
+        border-color: #2575fc;
+        box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
+        outline: none;
+    }
+    button {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg,#1de979, #2978a7);
+        border: none;
+        border-radius: 6px;
+        color: rgb(10, 11, 20);
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    button:hover {
+        background: linear-gradient(135deg, #2575fc, #6a11cb);
+    }
+   
+</style>
+</head>
+<body>
+    <div class="form-container">
+<h2>Registration Form</h2>
+ <form action="#" method="post">
+
+<form id="myForm">
+     <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" 
+           onfocus="handleFocus(this)" 
+           onblur="handleBlur(this)" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" 
+           onfocus="handleFocus(this)" 
+           onblur="handleBlur(this)" required>
+      <label>
+        Age:
+        <input type="number" id="age" name="age" min="1" max="120" required>
+    </label>
+    <div id="ageError" class="error"></div>
+
+    <label for="country">Country:</label>
+    <select id="country" name="country" onchange="handleChange(this)">
+        <option value="">Select...</option>
+        <option value="India">India</option>
+        <option value="USA">USA</option>
+        <option value="UK">UK</option>
+        <option value="UAE">UAE</option>
+        <option value="Sri Lanka">SriLanka</option>
+        <option value="Africa">Africa</option>
+    </select>
+      <div id="countryError" class="error"></div>
+    <button type="submit">Submit</button>
+    </div>
+</form>
+
+<script>
+    // Highlight input when focused
+    function handleFocus(element) {
+        element.style.backgroundColor = "#e0f7fa";
+    }
+
+    // Remove highlight when focus is lost
+    function handleBlur(element) {
+        element.style.backgroundColor = "";
+    }
+
+    // Show alert when dropdown changes
+    function handleChange(element) {
+        if (element.value) {
+            alert("You selected: " + element.value);
+        }
+    }
+
+    // Handle form submission
+    document.getElementById("myForm").onsubmit = function(event) {
+        event.preventDefault(); // Prevent actual form submission
+        alert("Form submitted successfully!\nName: " + 
+              document.getElementById("name").value + 
+              "\nEmail: " + document.getElementById("email").value);
+    };
+</script>
+
+</body>
+</html>
